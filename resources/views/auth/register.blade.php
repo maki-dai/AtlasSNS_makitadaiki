@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- 適切なURLを入力してください -->
-{!! Form::open(['url' => '/〇〇']) !!}
+{!! Form::open(['url' => '/register']) !!}
 
 <h2>新規ユーザー登録</h2>
 
@@ -13,16 +13,26 @@
 {{ Form::text('mail',null,['class' => 'input']) }}
 
 {{ Form::label('パスワード') }}
-{{ Form::text('password',null,['class' => 'input']) }}
+{{ Form::password('password',null,['class' => 'input']) }}
 
 {{ Form::label('パスワード確認') }}
-{{ Form::text('password_confirmation',null,['class' => 'input']) }}
+{{ Form::password('password_confirmation',null,['class' => 'input']) }}
 
-{{ Form::submit('登録') }}
+ <button type="submit" class="btn btn-success pull-right">REGISTER</button>
 
 <p><a href="/login">ログイン画面へ戻る</a></p>
 
 {!! Form::close() !!}
 
+<!-- バリデーションエラー用 -->
+@if($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+@endif
 
 @endsection

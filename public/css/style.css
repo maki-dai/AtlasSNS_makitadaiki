@@ -1,22 +1,95 @@
 @charset "utf-8";
-html{
-}
-body{
-}
+
+html {}
+
+body {}
+
+
 /* header */
-header{
-    background:#186AC9;
+header {
+    background: #186AC9;
 }
 
+#head {
+    padding: 20px;
+}
+
+h1 {
+    display: inline;
+}
+
+#head-menu {
+    float: right;
+}
+
+.home_button {
+    height: 40px;
+}
+
+
+
 /* main content */
-#row{
+#row {
     display: flex;
     flex-flow: row wrap;
 }
-#container{
+
+#container {
     flex: 0 0 80%;
 }
-#side-bar{
+
+#side-bar {
     flex: 0 0 19%;
     border-left: 1px solid #727272;
+}
+
+
+/* アコーディオンメニュー */
+summary {
+    cursor: pointer;
+    display: block;
+    color: #fff;
+}
+
+
+.summary_inner {
+    text-align: center;
+
+}
+
+summary::before {
+    content: "";
+    position: absolute;
+}
+
+details[open] summary::before {
+    transform: scaleY(-1);
+}
+
+/* 投稿フォーム */
+/* /* ボタン大きさ */
+.post_button,
+.edit_button,
+.delete_button,
+.search_button {
+    width: 30px;
+    height: 30px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    background: transparent;
+}
+
+/* 検索ゾーン */
+
+.search_zone {
+    display: flex;
+    flex-wrap: nowrap;
+    /* margin: 10px 30px 10px 30px; */
+}
+
+.search_word {
+    /* padding: 10px 200px 10px 200px; */
 }

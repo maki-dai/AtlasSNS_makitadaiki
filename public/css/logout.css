@@ -1,10 +1,22 @@
 @charset "UTF-8";
 
-html{
+html {
     height: 100%;
 }
 
-body{
+body {
     height: 100%;
     background: #186AC9;
+}
+
+section {
+    background-color: #ccd8ff;
+    padding: 50px 0;
+}
+
+#container {
+    width: 100px;
+    height: 100px;
+    background-color: #4773ff;
+    margin: 0 auto;
 }

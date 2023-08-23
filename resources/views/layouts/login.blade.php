@@ -8,6 +8,7 @@
     <title></title>
     <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
     <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
+
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -17,21 +18,28 @@
     <link rel="icon" href="画像URL" sizes="62x62" type="image/png" />
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
+
     <!--OGPタグ/twitterカード-->
+
 </head>
 <body>
     <header>
         <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
+        <h1><a href="/top"><img class="home_button" src="images/atlas.png"></a></h1>
+        <!-- ↑各ページ毎で反映はチェック　要修正 -->
+            <div id="head-menu">
+                <div id="Auth-user">
+                    <p>{{ Auth::user()->username}}さん<img src="images/arrow.png"></p>
                 <div>
-                <ul>
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
+                <details class="accordion-001">
+                <summary>V</summary>
+                <ul class="summary_inner">
+                    <li><a href="/top">HOME</a></li>
+                    <!-- ↑各ページ毎で反映はチェック　要修正 -->
+                    <li><a href="/profile/{{ Auth::user()}->id }}/edit">プロフィール編集</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
+                </details>
             </div>
         </div>
     </header>
@@ -41,24 +49,28 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
+                <p>{{ Auth::user()->username}}さんの</p>
                 <div>
                 <p>フォロー数</p>
                 <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
+                <!-- 押したらフォローリスト表示画面へ推移 -->
+                <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
                 <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
+                <!-- 押したらフォローリスト表示画面へ推移 -->
+                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <!-- 押したら検索画面へ推移 -->
+            <p class="btn"><a href="/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
+    <!-- javascript・jQueryとのリンク設定 -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
