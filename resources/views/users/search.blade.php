@@ -14,27 +14,36 @@
 </div>
 
 <!-- Authユーザー以外の登録ユーザー全表示 -->
-<div class="User_list">
+<div class="users-list">
 <!-- ※foreachで繰り返し処理でユーザー表示 -->
 @foreach($users as $user)
-<ul>
-<li class="user_icon">{{ $user->images }}</li>
+@if(auth()->user()->isNot($user))
+<ul class ="user-list">
+<li class="user-icon"><img class="profile-icon" src="{{ Storage::url($user->images) }}" alt="アイコン"></li>
 <li class="username">{{ $user->username }}</li>
 
-<!-- ※Authユーザーがフォローしてるかしてないでフォローボタンの条件分岐if -->
-   {{ Form::open(['route' => 'follow']) }}
-<li class="follow_btn">
-   {{ Form::submit('フォローする',['class' => 'btn btn-primary']) }}
-  </li>
-  {{Form::close() }}
-  <!-- ※else -->
+<!-- if Authユーザーがフォローしてなければフォローボタン
+フォローしてたらフォロー解除ボタンの条件分岐 -->
+
+ @if(auth()->user()->isFollowing($user->id))
   {{ Form::open(['route' => 'unfollow']) }}
+  {{ Form::hidden('id',$user->id) }}
   <li class="unfollow_btn">
  {{ Form::submit('フォロー解除',['class' => 'btn btn-primary']) }}
   </li>
   {{Form::close() }}
+ @else
+   {{ Form::open(['route' => 'follow']) }}
+   {{ Form::hidden('id',$user->id) }}
+<li class="follow_btn">
+   {{ Form::submit('フォローする',['class' => 'btn btn-primary']) }}
+  </li>
+  {{Form::close() }}
+  @endif
+
 </ul>
+@endif
 @endforeach
-<!-- ※endif -->
+
 </div>
 @endsection

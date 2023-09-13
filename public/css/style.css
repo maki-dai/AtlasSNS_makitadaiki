@@ -32,6 +32,7 @@ h1 {
 #row {
     display: flex;
     flex-flow: row wrap;
+    height: 100vh;
 }
 
 #container {
@@ -43,6 +44,31 @@ h1 {
     border-left: 1px solid #727272;
 }
 
+/* アイコン画像 */
+.profile-icon {
+    width: 40px;
+    height: 40px;
+}
+
+/* トップ画面*/
+
+.post-create {
+    border-bottom: 5px solid lightgray;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+/* 新規投稿のテキストエリア */
+.post_content {
+    border: none;
+    resize: none;
+    width: 150%;
+    height: 100%;
+}
+
+.post-button {
+    text-align: right;
+}
 
 /* アコーディオンメニュー */
 summary {
@@ -72,8 +98,8 @@ details[open] summary::before {
 .edit_button,
 .delete_button,
 .search_button {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
 }
 
 button {
@@ -82,14 +108,117 @@ button {
     background: transparent;
 }
 
-/* 検索ゾーン */
+/* 削除ボタンホバー時反転 */
+.delete-button:hover {}
 
+.user-post {
+    border-bottom: 1px solid #000;
+}
+
+.post-table {
+    width: 100%;
+    height: 100%;
+}
+
+/* 検索ゾーン */
 .search_zone {
     display: flex;
     flex-wrap: nowrap;
-    /* margin: 10px 30px 10px 30px; */
+    border-bottom: 5px solid lightgray;
+    padding: 30px 30px 30px 30px;
 }
+
+/* input[type="text"] {
+    font-size: 150%;
+} */
 
 .search_word {
     /* padding: 10px 200px 10px 200px; */
+}
+
+.users-list {}
+
+.user-list {
+    display: flex;
+    justify-content: center;
+}
+
+/* /* フォローリスト、フォロワーリスト */
+.list-name {
+    font-size: x-large;
+    margin: 30px 30px 70px 70px;
+    font-weight: 500;
+}
+
+.followuser-list {}
+
+/* アイコン横並び */
+.icon-list {
+    display: flex;
+    border-bottom: 5px solid lightgray;
+}
+
+/* ユーザープロフィール画面 */
+.user-profile {
+    border-bottom: 5px solid lightgray;
+}
+
+/* プロフィール編集画面 */
+.profile-edit {
+    width: 400px;
+    height: 100vh;
+    margin: 0 auto;
+}
+
+.edit-content {
+    display: flex;
+    ;
+    justify-content: space-between;
+    margin: 40px;
+}
+
+/* .profile-lb {
+    display: block;
+}
+
+.profile-form {
+    display: block;
+} */
+
+/* 投稿編集　モーダル */
+.content {
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.modal {
+    display: none;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.modal_bg {
+    background: rgba(0, 0, 0, 0.8);
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+}
+
+.modal_content {
+    background: #fff;
+    left: 50%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+}
+
+/* 投稿編集テキストエリア */
+.modal_post {
+    resize: none;
+    width: 100%;
+    height: 150px;
 }

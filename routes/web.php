@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'],function(){ // ミドルウェア処理で
  Route::get('/top','PostsController@index');
  Route::post('/top','PostsController@index');
 
- Route::get('/profile/{id}/edit','UsersController@profileEdit');//  プロフィール編集画面へ遷移
+ Route::get('/profile','UsersController@profileEdit');//  プロフィール編集画面へ遷移
  Route::post('/profile/update','UsersController@profileUpdate')->name('profile.update');
 //  ->name('profile.edit');
 
@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth'],function(){ // ミドルウェア処理で
  Route::get('/post','PostController@create');//表示用
  Route::post('/post','PostsController@create')->name('post.create');//投稿を押した時
 //  投稿内容編集
-//  Route::post('/update','PostsController@postUpdate')->name('post.update');
+ Route::post('/post/update','PostsController@postUpdate')->name('post.update');
 // 投稿削除
  Route::get('/post/{id}/delete','PostsController@delete')->name('post.delete');
 
@@ -58,14 +58,17 @@ Route::group(['middleware' => 'auth'],function(){ // ミドルウェア処理で
  Route::post('/search','UsersController@search')->name('user.search');
 
 // フォロー機能ルーティング
- Route::get('/follow','UsersController@follow')->name('follow');
- Route::post('/follow','UsersController@follow');
+//  Route::get('/follow','FollowsController@follow'); ゲットなくてもOKっぽい
+ Route::post('/follow','FollowsController@follow')->name('follow');
 // フォロー解除ルーティング
- Route::get('/unfollow','UsersController@unfollow')->name('unfollow');
- Route::post('/unfollow','UsersController@unfollow');
+ Route::get('/unfollow','FollowsController@unfollow');
+ Route::post('/unfollow','FollowsController@unfollow')->name('unfollow');
 
- Route::get('/follow-list','UsersController@followlist');//  フォローリスト押して画面遷移
- Route::get('/follower-list','UsersController@followerlist');//  フォロワーリスト押して画面遷移
+ Route::get('/follow-list','PostsController@followlist');//  フォローリスト押して画面遷移
+ Route::get('/follower-list','PostsController@followerlist');//  フォロワーリスト押して画面遷移
+
+//  ユーザープロフィール画面
+ Route::get('/userprofile/{id}','UsersController@userProfile');
 
  Route::get('/logout', 'Auth\LoginController@logout'); // ログアウト実装
  Route::post('/logout', 'Auth\LoginController@logout');

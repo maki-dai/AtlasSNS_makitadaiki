@@ -13,8 +13,11 @@ class PostsController extends Controller
     //トップページ（投稿表示）
     public function index()
     {
-        $user = Auth::user();
-        $posts = Post::get();// Postモデル（postsテーブル）からレコード情報取得
+        $following_id = Auth::user()->following()->pluck('followed_id');
+        // フォローユーザーとAuthユーザーの投稿を表示する（orWhere）
+        $posts = Post::with('user')->whereIn('user_id',$following_id)->orWhere('user_id',Auth::user()->id)->latest()->get();
+        // $user = Auth::user();
+        // $posts = Post::get();// Postモデル（postsテーブル）からレコード情報取得
         return view('posts.index',['posts'=>$posts]);
     }
 
@@ -37,8 +40,15 @@ class PostsController extends Controller
     }
 
     // 投稿内容編集
-    public function update()
+    public function postUpdate(Request $request)
     {
+        $id = $request->input('id');
+        $up_post = $request->input('upPost');
+        $posts = Post::get();
+        Post::where('id',$id)->update([
+            'post' => $up_post
+    ]);
+        return back();
 
     }
 
@@ -49,5 +59,21 @@ class PostsController extends Controller
         Post::where('id',$id)->delete();
         return back();
     }
-
+    // フォローリスト画面　投稿内容表示
+    public function followlist()
+    {
+        $following_id = Auth::user()->following()->pluck('followed_id');
+        // ユーザーアイコン表示
+        $lists = User::find($following_id);
+        $posts = Post::with('user')->whereIn('user_id',$following_id)->latest()->get();
+        return view('follows.followlist',['posts'=>$posts,'lists'=>$lists]);
+    }
+    // フォロワーリスト画面　投稿内容表示
+    public function followerlist()
+    {
+        $followed_id = Auth::user()->followed()->pluck('following_id');
+        $lists = User::find($followed_id);
+        $posts = Post::with('user')->whereIn('user_id',$followed_id)->latest()->get();
+        return view('follows.followerlist',['posts'=>$posts,'lists'=>$lists]);
+}
 }

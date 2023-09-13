@@ -1,21 +1,22 @@
 <?php
 
 
-
 namespace App\Http\Controllers;
 
 use app\User;
+use App\Post;
 // use app\Follow;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Auth;
 
 class UsersController extends Controller
 {
 // プロフィール編集画面へ遷移(get)（ログインユーザーの名前とメールアドレス表示）
-    public function profileEdit($id)
+    public function profileEdit()
     {
-        $user = User::where('id',$id)->first();
-        // $user = Auth::user();
+        // $user = User::where('id',$id)->first();
+        $user = Auth::user();
         // $username = $user->username;
         // $mail = $user->mail;
     return view('users.profile',['user'=>$user]);
@@ -25,15 +26,13 @@ class UsersController extends Controller
     // プロフィール編集更新（post）更新で保存してトップに
     public function profileUpdate(Request $request)
     {
-        // $request->validate([ // 編集バリデーション
-        //       'UserName' => ['required','min:2','max:12'],
-        //       'MailAdress' =>['required','min:5','max:40','unique:User','email'],
-        //       'NewPassword' =>['required','alpha_num','min:8','max:20','confirmed'],
-
-        //       'Bio' =>['max:150'],
-        //       'IconImage' =>['mimes:jpg,png,bmp,gif,svg'],
-
-        // ]);
+        $request->validate([ // 編集バリデーション
+              'upName' => ['required','min:2','max:12'],
+              'mail' =>['required','min:5','max:40','email', Rule::unique('users')->ignore(Auth::user()->id)],
+              'password' =>['required','alpha_num','min:8','max:20','confirmed'],
+              'upBio' =>['max:150'],
+              'upImg' =>['mimes:jpg,png,bmp,gif,svg'],
+        ]);
 
 
 //         	"・入力必須// ・2文字以上,12文字以内"
@@ -43,50 +42,31 @@ class UsersController extends Controller
 // 	・150文字以内
 // 	・画像(jpg、png、bmp、gif、svg)ファイル以外は不可
 
+        $id = $request->input('id');
 
-        // $id = $request->input('id');
-        // $up_name = $request->input('upName');
-        // $up_mail = $request->input('upMail');
-        // $up_pass = $request->input('upPass');
-        // $up_bio = $request->input('upBio');
-        // $up_img = $request->input('upImg');
+        // dd($request->upImg);
 
-        $user = User::find($id);
-        $user->username = $request->upName;
-        $user->mail = $request->upMail;
-        $user->password = $request->upPass;
-        $user->bio = $request->upBio;
-        $user->images = $request->upImg;
-        $user->save();
+        User::where('id',$id)->update([
+            'username' => $request->input('upName'),
+            'mail' => $request->input('mail'),
+            'password' =>  bcrypt($request->input('password')),
+            'bio' =>  $request->input('upBio'),
+        ]);
+
+// 画像ファイルがnullでないときのみアップデート
+// ↑↓まとめて記述できないか？
+         if(!empty($request->file('upImg'))){
+             $image = $request->file('upImg')->getClientOriginalName()->store('public/profiles');
+            User::where('id',$id)->update([
+            'images' => $image,
+            ]);
+            }
 
     return redirect('/top');
-        // User::where('id', $id)->update([
-        //       'username' => $up_name,
-        //       'mail' => $up_mail,
-        //       'password'=> $up_pass,
-        //       'bio'=> $up_bio,
-        //       'images'=>$up_img
-        // ]);
-
-        // return redirect('/top');// セッションで保存しつつ的な奴でトップに遷移
 
 
-    //      public function update(Request $request)
-    // {
-    //
-    // }
     }
 
-// フォローリスト画面遷移
-    public function followlist()
-    {
-        return view('follows.followlist');
-}
-// フォロワーリスト画面遷移
-    public function followerlist()
-    {
-    return view('follows.followerlist');
-}
 // 検索画面遷移
     public function index()
     {
@@ -107,20 +87,11 @@ class UsersController extends Controller
         return view('users.search',['users'=>$users]);
     }
 
-
-// フォロー機能
-    public function follow(User $user)
+    // ユーザープロフィール画面遷移
+    public function userProfile($id)
     {
-        $following_id = Auth::user()->id;
-        $followed_id = $user->id;
-
-        return back();
-}
-
-// フォロー解除
-    public function unfollow(User $user)
-    {
-        follow::where('following_id',$following_id)->delete();
-        return back();
-}
-}
+        $user = User::find($id);
+        $posts = Post::where('user_id',$id)->latest()->get();
+        return view('users.userprofile',['posts'=>$posts,'user'=>$user]);
+    }
+ }

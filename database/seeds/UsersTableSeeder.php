@@ -16,10 +16,10 @@ class UsersTableSeeder extends Seeder
         // パスワード（暗号化処理）
 DB::table('Users')->insert([
     [
-    'username' => 'コメダ',
-    'mail' => 'komeda@gmail.com' ,
+    'username' => 'ヒトカゲ',
+    'mail' => 'hitokage@gmail.com' ,
     // 'password' => bcrypt($password)
-    'password' => bcrypt('komekome1'),
+    'password' => bcrypt('hitohito'),
     ]
 ]);
     }

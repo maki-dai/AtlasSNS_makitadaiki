@@ -8,7 +8,7 @@
     <title></title>
     <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
     <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
-
+    <script src="script.js"></script>
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -26,17 +26,18 @@
     <header>
         <div id = "head">
         <h1><a href="/top"><img class="home_button" src="images/atlas.png"></a></h1>
-        <!-- ↑各ページ毎で反映はチェック　要修正 -->
             <div id="head-menu">
                 <div id="Auth-user">
-                    <p>{{ Auth::user()->username}}さん<img src="images/arrow.png"></p>
+                    <p>{{ Auth::user()->username}}さん</p>
+                    <!-- プロフィール画像　シンボリックリンク表示 -->
+  <img class="profile-icon" src="{{ Storage::url(Auth::user()->images) }}">
                 <div>
                 <details class="accordion-001">
                 <summary>V</summary>
                 <ul class="summary_inner">
                     <li><a href="/top">HOME</a></li>
                     <!-- ↑各ページ毎で反映はチェック　要修正 -->
-                    <li><a href="/profile/{{ Auth::user()}->id }}/edit">プロフィール編集</a></li>
+                    <li><a href="/profile">プロフィール編集</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
                 </details>
@@ -52,13 +53,13 @@
                 <p>{{ Auth::user()->username}}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>〇〇名</p>
+                <p>{{ Auth::user()->following()->count()}}名</p>
                 </div>
                 <!-- 押したらフォローリスト表示画面へ推移 -->
                 <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
-                <p>〇〇名</p>
+                <p>{{ Auth::user()->followed()->count()}}名</p>
                 </div>
                 <!-- 押したらフォローリスト表示画面へ推移 -->
                 <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
