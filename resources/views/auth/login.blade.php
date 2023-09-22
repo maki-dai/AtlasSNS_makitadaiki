@@ -4,18 +4,21 @@
 <!-- 適切なURLを入力してください -->
 <div class="form-container">
 {!! Form::open(['url' => '/login']) !!}
-<p class="welcome">AtlasSNSへようこそ</p>
+<p class="welcome-title">AtlasSNSへようこそ</p>
 
-<p>{{ Form::label('e-mail') }}</p>
+<div class="form-area">
+<label>mail adress</label>
 {{ Form::text('mail',null,['class' => 'input']) }}
+</div>
 
-
-<p>{{ Form::label('password') }}</p>
+<div class="form-area">
+<label>password</label>
 {{ Form::password('password',['class' => 'input']) }}
-
-<br>
-{{ Form::submit('ログイン') }}
-<a href="/register"><p class="register">新規ユーザーの方はこちら</p></a>
+</div>
+<div class="red-button">
+{{ Form::submit('   LOGIN   ',['class'=>'btn btn-danger'])}}
+</div>
+<a href="/register"><p class="register-link">新規ユーザーの方はこちら</p></a>
 {!! Form::close() !!}</div>
 
 @endsection

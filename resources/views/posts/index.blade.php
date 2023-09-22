@@ -5,16 +5,18 @@
 
 <!-- 投稿フォーム作成 -->
 <div class="post-create">
-  <img class="profile-icon" src="{{ Storage::url(Auth::user()->images) }}" alt="アイコン"> <!-- 未 ログインユーザー画像取得　表示-->
+  <img class="profile-icon" src="/storage/profiles/{{ Auth::user()->images }}" alt="アイコン"> <!-- 未 ログインユーザー画像取得　表示-->
 
+
+ <div class="form-group">
  {!! Form::open(['route' => 'post.create']) !!}
-     <div class="form-group">
          {{ Form::textarea('newPost',null,['class'=>'post_content','placeholder' => '投稿内容を入力してください']) }}
-     </div>
-
-     <button type="submit" class="btn btn-success pull-right"><img src="images/post.png" alt="投稿" class="post_button"></button>
+         <button type="submit" class="post-btn"><img src="images/post.png" alt="投稿" class="post_button"></button>
 
  {!! Form::close() !!}
+     </div>
+
+
 </div>
 
 
@@ -22,36 +24,45 @@
 <!-- リレーションでつないだpostテーブルを表示、ユーザー画像、ユーザー名、投稿内容、時間をforeachで繰り返し処理 （AuthuserとFollowing）-->
 <!-- if条件ーログインユーザー（Auth）の投稿のみ編集・削除機能実装 -->
 
-<table class="post-table">
+<div class="post-table">
 
   @foreach($posts as $post)
   <!-- Authユーザーがフォローしている人　と　Authユーザーの投稿を表示 -->
 
-<tr class ="user-post">
-  <td><img class="profile-icon" src="{{ Storage::url($post->user->images) }}" alt="アイコン"></td><!-- ユーザー画像 -->
-  <td>{{ $post->user->username }}</td> <!-- 投稿したユーザー名（リレーションUser経由） -->
-  <td>{{ $post->post }}</td><!-- 投稿内容 -->
-  <td>{{ $post->created_at }}</td><!-- 投稿日時 -->
+<ul class ="post-list">
+  <li><img class="profile-icon" src="/storage/profiles/{{ $post->user->images }}" alt="アイコン"></li><!-- ユーザー画像 -->
+  <div class="name-post">
+  <li style="font-weight:bold;">{{ $post->user->username }}</li> <!-- 投稿したユーザー名（リレーションUser経由） -->
+  <li>{{ $post->post }}</li><!-- 投稿内容 -->
+  </div>
+<div class="date-button">
+  <li>{{ $post->created_at }}</li><!-- 投稿日時 -->
 
 
   <!-- 編集ボタン(jsでモーダル機能実装) -->
 @if($post->user->id == Auth::user()->id)
-  <td><a class="js-modal-open" href="" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="images/edit.png" alt="編集" class="edit_button"></a></td>
+<div class="auth-button">
+  <li><a class="js-modal-open" href="" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="images/edit.png" alt="編集" class="edit_button"></a></li>
 
 
   <!-- 削除ボタン（jsもしくはonclickでモーダル機能実装） -->
-  <td>
+
+  <li>
     <a href="{{ route('post.delete',[ $post->id ]) }}" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')">
-    <img src="images/trash-h.png" alt="削除ボタン" class="delete_button">
-    <!-- <img src="images/trash.png" alt="削除ボタン２" class="delete_button"> -->
+    <div class="del-button">
+    <img src="images/trash-h.png"  alt="削除ボタン" class="delete_button" >
+    <img src="images/trash.png" alt="削除ボタン２" class="delete_button" style="padding:5px;">
+    </div>
   </a>
-</td>
+</li>
+</div>
 @endif
+</div>
   <!-- モーダル機能onclick="clickDisplayAlert()" 使うかも？？-->
-</tr>
+</ul>
 
 @endforeach
-</table>
+</div>
 
 <!-- モーダルの中身 -->
 <div class="modal js-modal">
@@ -60,10 +71,10 @@
      <form action="{{route('post.update')}}" method="post">
                 <textarea name="upPost" class="modal_post"></textarea>
                 <input type="hidden" name="id" class="modal_id" value="">
-                <input type="image" src="images/edit.png" value="更新" class="edit_button">
+                <p><input type="image" src="images/edit.png" value="更新" class="edit_button"></p>
                 {{ csrf_field() }}
       </form>
-      <a class="js-modal-close" href="">閉じる</a>
+
   </div>
 </div>
 

@@ -12,6 +12,8 @@ header {
 
 #head {
     padding: 20px;
+    display: flex;
+    position: relative;
 }
 
 h1 {
@@ -19,13 +21,96 @@ h1 {
 }
 
 #head-menu {
-    float: right;
+    /* float: right; */
+    display: flex;
+    /* margin-left: auto; */
+    position: absolute;
+    right: 0;
+    width: 20%;
+    justify-content: space-around;
+}
+
+.head-user {
+    color: #fff;
+    margin-block: auto;
+    font-size: larger;
+    margin-top: 15px;
 }
 
 .home_button {
     height: 40px;
 }
 
+/* アコーディオンメニュー */
+.menu-trigger {
+    cursor: pointer;
+    position: relative;
+    font-size: larger;
+    color: #fff;
+    margin-top: 15px;
+}
+
+.menu-trigger p {
+    position: absolute;
+}
+
+.menu-trigger.active p {
+    transform: rotate(180deg);
+}
+
+/* 幅は１００か２０％
+height:30%;
+背景白
+選択背景青
+選択文字白
+文字グレー */
+.menu-content {
+    display: block;
+    position: fixed;
+    z-index: 2;
+    /* padding-top: 80px; */
+    transform: translateY(-150%);
+    transition: .3s ease-in-out;
+    /* height: 30%; */
+    width: 20%;
+    margin-top: 80px;
+}
+
+.menu-content ul {
+    display: block;
+
+    background-color: #fff;
+    height: 240px;
+    font-size: x-large;
+    padding-left: 0;
+    border: solid thin navy;
+}
+
+.menu-content ul li {
+    /* padding: 25px; */
+    text-align: center;
+    height: 33%;
+}
+
+.menu-content ul li a {
+    color: gray !important;
+    display: block;
+    height: 100%;
+}
+
+.menu-link {
+    padding: 20px;
+}
+
+.menu-content ul li a:hover {
+    background-color: navy;
+    color: #fff !important;
+}
+
+.menu-content.active {
+    transform: translateY(0%);
+    transition: .3s ease-in-out;
+}
 
 
 /* main content */
@@ -33,21 +118,53 @@ h1 {
     display: flex;
     flex-flow: row wrap;
     height: 100vh;
+    width: 100%;
 }
 
 #container {
     flex: 0 0 80%;
 }
 
+/* サイドバー */
 #side-bar {
-    flex: 0 0 19%;
+    flex: 0 0 20%;
     border-left: 1px solid #727272;
+}
+
+#confirm {
+    border-bottom: 1px solid grey;
+    padding: 20px;
+}
+
+.list-button {
+    text-align: right;
+}
+
+.list-button p {
+    width: 120px;
+}
+
+.search-link {
+    text-align: center;
+    padding: 30px;
+}
+
+
+a {
+    /* リンクの下線消し */
+    text-decoration: none !important;
+}
+
+.list-link {
+    color: #fff;
+    border-bottom: none;
 }
 
 /* アイコン画像 */
 .profile-icon {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
 }
 
 /* トップ画面*/
@@ -56,18 +173,30 @@ h1 {
     border-bottom: 5px solid lightgray;
     display: flex;
     flex-wrap: nowrap;
+    height: 20%;
+    padding: 20px;
+}
+
+.form-group {
+    height: 100%;
+    display: flex;
+    position: relative;
+    width: 100%;
 }
 
 /* 新規投稿のテキストエリア */
 .post_content {
     border: none;
     resize: none;
-    width: 150%;
+    width: 80%;
     height: 100%;
+    position: absolute;
 }
 
-.post-button {
-    text-align: right;
+.post-btn {
+    margin-top: 90px;
+    position: absolute;
+    margin-left: 80%;
 }
 
 /* アコーディオンメニュー */
@@ -98,8 +227,9 @@ details[open] summary::before {
 .edit_button,
 .delete_button,
 .search_button {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
+    margin: 5px;
 }
 
 button {
@@ -109,23 +239,73 @@ button {
 }
 
 /* 削除ボタンホバー時反転 */
-.delete-button:hover {}
+.del-button {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
 
-.user-post {
-    border-bottom: 1px solid #000;
+.del-button img {
+    position: absolute;
+}
+
+.del-button img:last-of-type {
+    opacity: 0;
+    transition: opacity .2s;
+}
+
+.del-button:hover img {
+    opacity: 1;
+
+}
+
+/* 投稿表示部分 */
+.post-list {
+    border-bottom: 1px solid gray;
+    padding: 10px 10px 10px 100px;
+    display: flex;
+    margin-bottom: 0rem !important;
+}
+
+.post-list li {
+    margin: 5px;
+}
+
+.date-button {
+    display: block;
+    margin-left: auto;
+}
+
+
+.auth-button {
+    display: flex;
 }
 
 .post-table {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
 }
 
-/* 検索ゾーン */
+.name-post {
+    margin-block: auto;
+}
+
+.post-date {
+    margin-left: auto !important;
+}
+
+
+/* 検索ゾーン search*/
 .search_zone {
     display: flex;
     flex-wrap: nowrap;
-    border-bottom: 5px solid lightgray;
+    border-bottom: 5px solid lightgrey;
     padding: 30px 30px 30px 30px;
+}
+
+.search-space {
+    width: 300px;
+    height: 40px;
 }
 
 /* input[type="text"] {
@@ -133,41 +313,104 @@ button {
 } */
 
 .search_word {
-    /* padding: 10px 200px 10px 200px; */
+    margin: auto;
+    font-size: large;
 }
 
-.users-list {}
+.users-list {
+    margin: 20px 25% 20px 25%;
+}
 
 .user-list {
     display: flex;
-    justify-content: center;
+    /* justify-content: space-between; */
+    position: relative;
 }
 
-/* /* フォローリスト、フォロワーリスト */
+.username {
+    padding: 20px;
+}
+
+.follow_btn,
+.unfollow_btn {
+    padding: 15px 0px 15px 0px;
+    position: absolute;
+    right: 0;
+
+}
+
+.btn-info,
+.btn-danger {
+    width: 120px;
+    color: #fff !important;
+
+}
+
+/* フォローリスト、フォロワーリスト */
 .list-name {
     font-size: x-large;
     margin: 30px 30px 70px 70px;
     font-weight: 500;
 }
 
-.followuser-list {}
-
-/* アイコン横並び */
 .icon-list {
     display: flex;
     border-bottom: 5px solid lightgray;
 }
 
-/* ユーザープロフィール画面 */
-.user-profile {
+
+/* ユーザープロフィール画面userprofile */
+.user-container {
     border-bottom: 5px solid lightgray;
+    height: 20%;
+    display: flex;
+    padding: 30px 15px 30px 60px;
+    position: relative;
+}
+
+.user-profile {
+    width: 50%;
+    display: grid;
+    align-items: center;
+    padding-left: 15px;
+}
+
+
+.user-content {
+    display: flex;
+    /* justify-content: space-evenly; */
+}
+
+.user-content p {
+    font-size: large;
+}
+
+.user-unfollow_btn,
+.user-follow_btn {
+    padding: 15px 0px 15px 0px;
+    position: absolute;
+    right: 15px;
+    margin-top: 60px;
 }
 
 /* プロフィール編集画面 */
+.profile-container {
+    display: flex;
+    padding: 30px 10%;
+    text-align: center;
+}
+
 .profile-edit {
-    width: 400px;
-    height: 100vh;
-    margin: 0 auto;
+    /* height: 100vh; */
+    width: 80%;
+}
+
+.profile-edit input {
+    width: 60%;
+    background-color: #e7e7e7;
+    /* border-width: thin; */
+    height: 40px;
+    border: solid thin gray;
 }
 
 .edit-content {
@@ -177,11 +420,36 @@ button {
     margin: 40px;
 }
 
-/* .profile-lb {
-    display: block;
+.profile-lb {
+    font-size: large;
+    font-weight: bold;
 }
 
-.profile-form {
+/* .profile-upfile {
+    height: 100px !important;
+} */
+.file_upload {
+    color: #727272;
+    background-color: #e7e7e7;
+    border: solid thin gray;
+    cursor: pointer;
+    width: 60%;
+    height: 100px;
+    padding: 35px 70px;
+}
+
+.file_upload p {
+    background-color: #fff;
+    font-size: large;
+    color: lightgray;
+}
+
+
+input[type="file"] {
+    display: none;
+}
+
+/* .profile-form {
     display: block;
 } */
 
@@ -214,6 +482,7 @@ button {
     top: 50%;
     transform: translate(-50%, -50%);
     width: 60%;
+    height: 30%;
 }
 
 /* 投稿編集テキストエリア */
@@ -221,4 +490,8 @@ button {
     resize: none;
     width: 100%;
     height: 150px;
+}
+
+.modal_content p {
+    text-align: center;
 }

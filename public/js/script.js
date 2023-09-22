@@ -30,3 +30,24 @@ $(function () {
 
 
 // アコーディオンメニュー開閉
+$(function () {
+  $('.menu-trigger').click(function () {        //ハンバーガーボタン（.menu-trigger）をタップすると、
+    $(this).toggleClass('active');              //タップしたハンバーガーボタン（.menu-trigger）に（.active）を追加・削除する。
+    if ($(this).hasClass('active')) {           //もし、ハンバーガーボタン（.menu-trigger）に（.active）があれば、
+      $('.menu-content').addClass('active');          //(.g-navi)にも（.active）を追加する。
+    } else {                                    //それ以外の場合は、
+      $('.menu-content').removeClass('active');       //(.g-navi)にある（.active）を削除する。
+    }
+  });
+  $('.menu-content ul li a').click(function () { //各メニューリンク（.nav-wrapper ul li a）をタップすると、
+    $('.menu-trigger').removeClass('active');   //ハンバーガーボタン（.menu-trigger）にある（.active）を削除する。
+    $('.menu-content').removeClass('active');         //(.g-navi)にある（.active）も削除する。
+  });
+});
+
+
+// プロフィール編集画面の画像アップロード時
+$('input').on('change', function () {
+  var file = $(this).prop('files')[0];
+  $('p').text(file.name);
+});

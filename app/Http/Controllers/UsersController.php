@@ -55,10 +55,14 @@ class UsersController extends Controller
 
 // 画像ファイルがnullでないときのみアップデート
 // ↑↓まとめて記述できないか？
-         if(!empty($request->file('upImg'))){
-             $image = $request->file('upImg')->getClientOriginalName()->store('public/profiles');
+         if(!empty($request->file('images'))){
+// dd($request['images']);
+             $image = $request->file('images');
+            //  ファイル名取得して保存時にその名前でpublicに保存
+             $fileName = $image->getClientOriginalName();
+            $image->storeAs('public/profiles',$fileName);
             User::where('id',$id)->update([
-            'images' => $image,
+            'images' => $fileName,
             ]);
             }
 

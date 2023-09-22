@@ -8,6 +8,8 @@
   <title></title>
   <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
   <link rel="stylesheet" href="{{ asset('css/logout.css') }} ">
+  <!-- bootstrap リンク -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <!--スマホ,タブレット対応-->
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <!--サイトのアイコン指定-->
@@ -22,7 +24,7 @@
 <body>
   <header>
     <h1><img class="logo" src="images/atlas.png"></h1>
-    <p>Social Network Service</p>
+    <p class="sub-title">Social Network Service</p>
   </header>
   <div id="container">
     @yield('content')

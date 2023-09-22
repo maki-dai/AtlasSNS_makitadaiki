@@ -2,26 +2,34 @@
 
 @section('content')
 <!-- 適切なURLを入力してください -->
-<div class="form-container">
+<div class="form-container-reg">
 {!! Form::open(['url' => '/register']) !!}
 
-<p>新規ユーザー登録</p>
-
-<p>{{ Form::label('ユーザー名') }}</p>
+<p class="register-title">新規ユーザー登録</p>
+<div class="form-area">
+<label>username</label>
 {{ Form::text('username',null,['class' => 'input']) }}
-
-<p>{{ Form::label('メールアドレス') }}</p>
+</div>
+<div class="form-area">
+<label>mail adress</label>
 {{ Form::text('mail',null,['class' => 'input']) }}
+</div>
 
-<p>{{ Form::label('パスワード') }}</p>
-{{ Form::password('password',null,['class' => 'input']) }}
+<div class="form-area">
+<label>password</label>
+{{ Form::password('password',null,['class' => 'input-pass']) }}
+</div>
 
-<p>{{ Form::label('パスワード確認') }}</p>
-{{ Form::password('password_confirmation',null,['class' => 'input']) }}
+<div class="form-area">
+<label>password_confirm</label>
+{{ Form::password('password_confirmation',null,['class' => 'input-pass']) }}
+</div>
 
- <button type="submit" class="btn btn-success pull-right">REGISTER</button>
+<div class="red-button">
+ <button type="submit" class="btn btn-danger">REGISTER</button>
+</div>
 
-<p><a href="/login">ログイン画面へ戻る</a></p>
+<a href="/login"><p class="login-link">ログイン画面へ戻る</p></a>
 
 {!! Form::close() !!}
 </div>
