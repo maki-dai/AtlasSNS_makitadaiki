@@ -50,8 +50,8 @@
   <li>
     <a href="{{ route('post.delete',[ $post->id ]) }}" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')">
     <div class="del-button">
-    <img src="images/trash-h.png"  alt="削除ボタン" class="delete_button" >
-    <img src="images/trash.png" alt="削除ボタン２" class="delete_button" style="padding:5px;">
+    <img src="images/trash.png"  alt="削除ボタン" class="delete_button" style="padding:5px;">
+    <img src="images/trash-h.png" alt="削除ボタン２" class="delete_button">
     </div>
   </a>
 </li>

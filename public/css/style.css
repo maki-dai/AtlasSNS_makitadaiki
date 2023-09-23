@@ -173,7 +173,7 @@ a {
     border-bottom: 5px solid lightgray;
     display: flex;
     flex-wrap: nowrap;
-    height: 20%;
+    height: 15%;
     padding: 20px;
 }
 
@@ -194,7 +194,7 @@ a {
 }
 
 .post-btn {
-    margin-top: 90px;
+    margin-top: 65px;
     position: absolute;
     margin-left: 80%;
 }
@@ -274,11 +274,14 @@ button {
 .date-button {
     display: block;
     margin-left: auto;
+    position: relative;
 }
 
 
 .auth-button {
     display: flex;
+    position: absolute;
+    bottom: 0;
 }
 
 .post-table {
@@ -288,6 +291,7 @@ button {
 
 .name-post {
     margin-block: auto;
+    width: 70%;
 }
 
 .post-date {
