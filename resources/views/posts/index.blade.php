@@ -15,7 +15,15 @@
 
  {!! Form::close() !!}
      </div>
-
+@if($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+@endif
 
 </div>
 
@@ -36,7 +44,7 @@
   <li>{{ $post->post }}</li><!-- 投稿内容 -->
   </div>
 <div class="date-button">
-  <li>{{ $post->created_at }}</li><!-- 投稿日時 -->
+  <li>{{ $post->created_at->format('Y-m-d-h-m') }}</li><!-- 投稿日時 -->
 
 
   <!-- 編集ボタン(jsでモーダル機能実装) -->
@@ -76,6 +84,15 @@
       </form>
 
   </div>
+  @if($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+@endif
 </div>
 
 @endsection

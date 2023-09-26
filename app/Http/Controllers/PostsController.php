@@ -42,6 +42,9 @@ class PostsController extends Controller
     // 投稿内容編集
     public function postUpdate(Request $request)
     {
+        $request->validate([ // 投稿バリデーション
+              'upPost' => ['required','max:150'],
+        ]);
         $id = $request->input('id');
         $up_post = $request->input('upPost');
         $posts = Post::get();

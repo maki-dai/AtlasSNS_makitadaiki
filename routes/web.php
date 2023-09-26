@@ -69,6 +69,7 @@ Route::group(['middleware' => 'auth'],function(){ // ミドルウェア処理で
 
 //  ユーザープロフィール画面
  Route::get('/userprofile/{id}','UsersController@userProfile');
+//  Route::post('/userprofile/{id}','UsersController@userProfile');
 
  Route::get('/logout', 'Auth\LoginController@logout'); // ログアウト実装
  Route::post('/logout', 'Auth\LoginController@logout');

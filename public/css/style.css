@@ -116,7 +116,7 @@ height:30%;
 /* main content */
 #row {
     display: flex;
-    flex-flow: row wrap;
+    /* flex-flow: row wrap; */
     height: 100vh;
     width: 100%;
 }
@@ -174,7 +174,7 @@ a {
     display: flex;
     flex-wrap: nowrap;
     height: 15%;
-    padding: 20px;
+    padding: 20px 50px 5px 50px;
 }
 
 .form-group {
@@ -194,9 +194,11 @@ a {
 }
 
 .post-btn {
-    margin-top: 65px;
+    /* margin-top: 65px; */
     position: absolute;
-    margin-left: 80%;
+    /* margin-left: 80%; */
+    right: 10%;
+    bottom: 0;
 }
 
 /* アコーディオンメニュー */
@@ -272,7 +274,7 @@ button {
 }
 
 .date-button {
-    display: block;
+    /* display: block; */
     margin-left: auto;
     position: relative;
 }
@@ -284,19 +286,18 @@ button {
     bottom: 0;
 }
 
-.post-table {
+/* .post-table {
     width: 100%;
-    /* height: 100%; */
-}
+    /* height: 100%;
+} */
 
 .name-post {
     margin-block: auto;
-    width: 70%;
 }
 
-.post-date {
+/* .post-date {
     margin-left: auto !important;
-}
+} */
 
 
 /* 検索ゾーン search*/
@@ -357,9 +358,16 @@ button {
     font-weight: 500;
 }
 
-.icon-list {
+.list-header {
     display: flex;
     border-bottom: 5px solid lightgray;
+    /* width: 80%; */
+    /* display: flex; */
+}
+
+.icon-list {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 
@@ -391,10 +399,10 @@ button {
 
 .user-unfollow_btn,
 .user-follow_btn {
-    padding: 15px 0px 15px 0px;
+    /* padding: 15px 0px 15px 0px; */
     position: absolute;
     right: 15px;
-    margin-top: 60px;
+    bottom: 10px;
 }
 
 /* プロフィール編集画面 */

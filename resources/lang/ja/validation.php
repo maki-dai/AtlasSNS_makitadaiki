@@ -53,7 +53,7 @@ return [
     'max'                  => [
         'numeric' => 'The :attribute may not be greater than :max.',
         'file'    => 'The :attribute may not be greater than :max kilobytes.',
-        'string'  => ':attributeは、:max文字以下で指定してください。.',
+        'string'  => ':attributeは、:max文字以下で指定してください。',
         'array'   => 'The :attribute may not have more than :max items.',
     ],
     'mimes'                => 'The :attribute must be a file of type: :values.',
@@ -120,6 +120,8 @@ return [
             "username" => "ユーザー名",
             "mail" => "メールアドレス",
             "password" => "パスワード",
+            "newPost" => "投稿内容",
+            "upPost" => "投稿内容"
     ],
 
 ];

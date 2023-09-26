@@ -49,5 +49,5 @@ $(function () {
 // プロフィール編集画面の画像アップロード時
 $('input').on('change', function () {
   var file = $(this).prop('files')[0];
-  $('p').text(file.name);
+  $('.file-name').text(file.name);
 });

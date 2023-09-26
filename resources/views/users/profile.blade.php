@@ -50,7 +50,7 @@
 <div class="edit-content">
 {{ Form::label('images','icon image',['class'=>'profile-lb']) }}
 <label class="file_upload">
-  <p>ファイルを選択</p>
+  <p class="file-name">ファイルを選択</p>
 {{ Form::file('images',['class'=>'profile-upfile']) }}</label>
 
 </div>

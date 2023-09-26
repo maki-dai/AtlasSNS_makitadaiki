@@ -8,6 +8,7 @@
     <title></title>
     <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
     <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
+
     <script src="script.js"></script>
     <!-- bootstrap リンク -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -20,9 +21,7 @@
     <link rel="icon" href="画像URL" sizes="62x62" type="image/png" />
     <!--iphoneのアプリアイコン指定-->
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
-
     <!--OGPタグ/twitterカード-->
-
 </head>
 <body>
     <header>
@@ -80,8 +79,8 @@
     </div>
     <footer>
     </footer>
-    <!-- javascript・jQueryとのリンク設定 -->
+     <!-- javascript・jQueryとのリンク設定 -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="{{ asset('/js/script.js') }}"></script>
 </body>
 </html>
