@@ -370,6 +370,10 @@ button {
     flex-wrap: wrap;
 }
 
+.post-date {
+    margin-left: auto;
+}
+
 
 /* ユーザープロフィール画面userprofile */
 .user-container {

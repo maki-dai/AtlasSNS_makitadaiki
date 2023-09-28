@@ -44,7 +44,7 @@
   <li>{{ $post->post }}</li><!-- 投稿内容 -->
   </div>
 <div class="date-button">
-  <li>{{ $post->created_at->format('Y-m-d-h-m') }}</li><!-- 投稿日時 -->
+  <li>{{ $post->created_at->format('Y-m-d h:m') }}</li><!-- 投稿日時 -->
 
 
   <!-- 編集ボタン(jsでモーダル機能実装) -->
