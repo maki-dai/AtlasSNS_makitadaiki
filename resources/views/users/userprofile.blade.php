@@ -52,8 +52,9 @@
   <li  style="font-weight:bold;">{{ $post->user->username }}</li> <!-- 投稿したユーザー名（リレーションUser経由） -->
   <li>{{ $post->post }}</li><!-- 投稿内容 -->
  </div>
-  <li class="post-date">{{ $post->created_at->format('Y-m-d-h-m') }}</li><!-- 投稿日時 -->
-
+ <div class="post-date">
+  <li>{{ $post->created_at->format('Y-m-d h:m') }}</li><!-- 投稿日時 -->
+</div>
  </ul>
 </div>
 @endforeach
